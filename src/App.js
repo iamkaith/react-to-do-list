@@ -9,8 +9,6 @@ import TaskList from './TaskList';
 - button beside input to submit into list of to-do items
 - blank items should not be added (press "add" w/o writing a task)
 - list can have 0 to many items
-- each list item must have a checkbox
-- checkbox = remove from list
 */
 
 
@@ -26,6 +24,7 @@ class App extends Component {
     }
    
     this.addTask = this.addTask.bind(this);
+    this.deleteTask = this.deleteTask.bind(this);
     this.onTextChange = this.onTextChange.bind(this);
 
   }
@@ -38,7 +37,7 @@ class App extends Component {
       item = {
         checked: false,
         task: this.state.task,
-        timestamp: new Date()
+        timestamp: new Date().getTime(),
       };
 
 
@@ -54,6 +53,15 @@ class App extends Component {
     } 
 
     console.log("in submit");
+  } 
+
+  deleteTask(index) {   
+    let copy = this.state.taskItems;
+    copy.splice(index, 1);
+    
+    this.setState({
+      taskItems: copy,
+    });
   }
 
   onTextChange(e) {
@@ -61,7 +69,6 @@ class App extends Component {
     // keeping this here just in case I want to expand the form
     // const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
 
-    
     const name = e.target.name;
     const value = e.target.value;   
 
@@ -107,7 +114,9 @@ class App extends Component {
 
         <div className="row">
           <div className="col">
-            <TaskList list={this.state.taskItems}   />
+            <TaskList 
+              list={this.state.taskItems} 
+              deleteTask={this.deleteTask}  />
           </div>       
         </div>
         
