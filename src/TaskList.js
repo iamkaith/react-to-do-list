@@ -18,9 +18,9 @@ class TaskList extends Component {
             <div className="container">
                 <h2>Your Current Task List</h2>
 
-                <ul> { this.props.list.map( (item, index) => 
+                <ul className="list-group list-group-flush "> { this.props.list.map( (item, index) => 
                     <li key={item.timestamp} 
-                            className="bg-success text-white"
+                            className="list-group-item"
                             onClick={() => this.onTaskComplete(index)  } > {item.task} </li> ) }
 
                 </ul>

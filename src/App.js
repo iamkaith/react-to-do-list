@@ -4,15 +4,6 @@ import './App.css';
 
 import TaskList from './TaskList';
 
-/*
-- display text input for user where they can write a task
-- button beside input to submit into list of to-do items
-- blank items should not be added (press "add" w/o writing a task)
-- list can have 0 to many items
-*/
-
-
-
 class App extends Component {
   
   constructor(props) {
@@ -40,12 +31,9 @@ class App extends Component {
         timestamp: new Date().getTime(),
       };
 
-
-      // get current todo list
       const currentList = this.state.taskItems;
       currentList.push(item);
 
-      // add to list
       this.setState({
         taskItems: currentList
       })
