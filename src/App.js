@@ -20,6 +20,7 @@ class App extends Component {
 
   }
   
+  // clear task input field for new entry && update task list
   addTask(e) {
     e.preventDefault();
     let item = {};
@@ -34,13 +35,13 @@ class App extends Component {
       const currentList = this.state.taskItems;
       currentList.push(item);
 
+      
       this.setState({
+        task: '',
         taskItems: currentList
       })
 
     } 
-
-    console.log("in submit");
   } 
 
   deleteTask(index) {   
@@ -52,6 +53,7 @@ class App extends Component {
     });
   }
 
+  // handle input field text changes
   onTextChange(e) {
     // console.log(e.target);
     // keeping this here just in case I want to expand the form
@@ -83,17 +85,18 @@ class App extends Component {
           <div className="col">
             <h3>Add a Task Below</h3>
             <form onSubmit={this.addTask} className="form-group">
-            <input 
-              name="task" 
-              value={this.state.task} 
-              onChange={this.onTextChange}
-              type="text"
-              placeholder="Enter task" />
+              <div class="form-group">
+                <input 
+                  name="task" 
+                  value={this.state.task} 
+                  onChange={this.onTextChange}
+                  type="text"
+                  placeholder="Enter task....." />
 
-            <button 
-              type="submit" 
-              className="btn btn-primary">Add</button>
-
+                <button 
+                  type="submit" 
+                  className="btn btn-primary">Add</button>
+              </div>
             </form>
           </div> 
         </div>
